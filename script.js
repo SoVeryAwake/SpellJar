@@ -1,6 +1,6 @@
 const sheetId = '1OZC2I95TySyNYARE-AOcLoP4nrvfWqV0KmzRgBApevo'; // Your Google Sheet ID
-const apiKey = 'AIzaSyDz9HqsN2K5orRCBSRQL46eU7hMWrXbp9E'; // Your restricted Google API Key
-const unsplashAccessKey = 'q-HPiupPOdFUgZESUDAuDfNAb1IxIyVXdLK1la9FmIM'; // Your Unsplash API Key
+const apiKey = 'AIzaSyDz9HqsN2K5orRCBSRQL46eU7hMWrXbp9E'; // Your Google API Key
+const unsplashAccessKey = 'q-HPiupPOdFUgZESUDAuDfNAb1IxIyVXdLK1la9FmIM'; // Unsplash API Key
 
 const properties = [
     'Amplification of energy', 'Clarity', 'Spiritual growth', 'Energy cleansing',
@@ -192,7 +192,7 @@ function showSelectedItems() {
     selectedTable.innerHTML = '';
     const allProperties = new Set();
 
-    if (selectedItems.length > 0) {
+        if (selectedItems.length > 0) {
         const table = document.createElement('table');
         table.classList.add('property-table');
         const header = document.createElement('thead');
@@ -256,3 +256,4 @@ document.addEventListener('DOMContentLoaded', () => {
     infoDiv.innerHTML = infoMessage;
     resultsSection.insertBefore(infoDiv, resultsSection.querySelector('button'));
 });
+
