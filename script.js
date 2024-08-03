@@ -1,6 +1,6 @@
 const sheetId = '1OZC2I95TySyNYARE-AOcLoP4nrvfWqV0KmzRgBApevo'; // Your Google Sheet ID
-const apiKey = 'AIzaSyDz9HqsN2K5orRCBSRQL46eU7hMWrXbp9E'; // Your Google API Key
-const unsplashAccessKey = 'q-HPiupPOdFUgZESUDAuDfNAb1IxIyVXdLK1la9FmIM'; // Unsplash API Key
+const apiKey = 'AIzaSyDYi--rqnieBKHdtCyk8zzCh1NQPaX3TQQ'; // Your restricted Google API Key
+const unsplashAccessKey = 'q-HPiupPOdFUgZESUDAuDfNAb1IxIyVXdLK1la9FmIM'; // Your Unsplash API Key
 
 const properties = [
     'Amplification of energy', 'Clarity', 'Spiritual growth', 'Energy cleansing',
@@ -25,12 +25,6 @@ $(document).ready(function() {
         allowClear: true,
         closeOnSelect: false // Keep the dropdown open for multiple selections
     });
-
-    // Load previously selected properties from local storage
-    const savedProperties = JSON.parse(localStorage.getItem('selectedProperties'));
-    if (savedProperties && savedProperties.length > 0) {
-        $('#properties-select').val(savedProperties).trigger('change');
-    }
 
     // Sort properties alphabetically
     properties.sort();
@@ -69,9 +63,6 @@ async function findItems() {
     console.log("Selected properties:", selectedProperties);
     const itemList = document.getElementById('item-list');
     itemList.innerHTML = '';
-
-    // Save selected properties to local storage
-    localStorage.setItem('selectedProperties', JSON.stringify(selectedProperties));
 
     const items = await fetchSheetData();
     console.log('Items:', items); // Log processed items for debugging
@@ -123,12 +114,6 @@ async function findItems() {
         document.getElementById('selection-section').style.display = 'block';
     } else {
         itemList.innerHTML = '<p>No components match your selected properties.</p>';
-    }
-
-    // Display selected properties above the search bar
-    const selectedPropertiesList = document.getElementById('selected-properties');
-    if (selectedPropertiesList) {
-        selectedPropertiesList.innerHTML = selectedProperties.map(prop => `<span class="selected-property">${prop}</span>`).join(', ');
     }
 }
 
@@ -192,7 +177,7 @@ function showSelectedItems() {
     selectedTable.innerHTML = '';
     const allProperties = new Set();
 
-        if (selectedItems.length > 0) {
+    if (selectedItems.length > 0) {
         const table = document.createElement('table');
         table.classList.add('property-table');
         const header = document.createElement('thead');
@@ -215,7 +200,7 @@ function showSelectedItems() {
             item.properties.forEach(prop => allProperties.add(prop));
         });
 
-        table.appendChild(body);
+                table.appendChild(body);
         selectedTable.appendChild(table);
     } else {
         selectedTable.innerHTML = '<p>No components selected.</p>';
@@ -236,9 +221,6 @@ function resetApp() {
     document.getElementById('selected-items-table').innerHTML = '';
     document.getElementById('unique-properties').innerHTML = '';
     $('#properties-select').val(null).trigger('change');
-
-    // Clear local storage
-    localStorage.removeItem('selectedProperties');
 }
 
 // Information message
