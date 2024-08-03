@@ -22,7 +22,8 @@ $(document).ready(function() {
     console.log("Document loaded");
     $('#properties-select').select2({
         placeholder: 'Select Spiritual Properties',
-        allowClear: true
+        allowClear: true,
+        closeOnSelect: false // Keep the dropdown open for multiple selections
     });
 
     // Sort properties alphabetically
@@ -114,17 +115,13 @@ async function findItems() {
     } else {
         itemList.innerHTML = '<p>No components match your selected properties.</p>';
     }
-
-    // Display selected properties above the search bar
-    const selectedPropertiesList = document.getElementById('selected-properties');
-    selectedPropertiesList.innerHTML = selectedProperties.map(prop => `<span class="selected-property">${prop}</span>`).join(', ');
 }
 
 // Modal functionality
 function openModal(imageUrl, captionText) {
     const modal = document.getElementById('imageModal');
     const modalImg = document.getElementById('modalImage');
-    const caption = document.getElementById('caption');
+        const caption = document.getElementById('caption');
 
     modal.style.display = "block";
     modalImg.src = imageUrl;
@@ -194,4 +191,51 @@ function showSelectedItems() {
             const itemLink = `<a href="https://www.google.com/search?tbm=isch&q=${encodeURIComponent(item.item)}" target="_blank">${item.item}</a>`;
             row.innerHTML = `
                 <td>${itemLink}</td>
-                <td><img src="${item.imageUrl}" alt="${item.item}" onclick="openModal('${item.imageUrl
+                <td><img src="${item.imageUrl}" alt="${item.item}" onclick="openModal('${item.imageUrl}', '${item.item}')"></td>
+                <td>${item.type}</td>
+                <td>${item.properties.join(', ')}</td>
+            `;
+            body.appendChild(row);
+
+            item.properties.forEach(prop => allProperties.add(prop));
+        });
+
+        table.appendChild(body);
+        selectedTable.appendChild(table);
+    } else {
+        selectedTable.innerHTML = '<p>No components selected.</p>';
+    }
+
+    propertiesList.innerHTML = Array.from(allProperties).sort().join(', ');
+
+    document.getElementById('results-section').style.display = 'block';
+    document.getElementById('spell-form').style.display = 'none';
+    document.getElementById('selection-section').style.display = 'none';
+}
+
+function resetApp() {
+    document.getElementById('spell-form').style.display = 'block';
+    document.getElementById('selection-section').style.display = 'none';
+    document.getElementById('results-section').style.display = 'none';
+    document.getElementById('item-list').innerHTML = '';
+    document.getElementById('selected-items-table').innerHTML = '';
+    document.getElementById('unique-properties').innerHTML = '';
+    $('#properties-select').val(null).trigger('change');
+}
+
+// Information message
+const infoMessage = `
+    <p>All of the crystals on the list are provided and available for selection at the booth. 
+    However, all of the rocks and plants will need to be foraged from around the Starstruck Farms property.</p>
+    <p>Gather the crystals you want, then respectfully scavenge the remaining components from the farm. 
+    Once all of the components are inside the jar, seek out Jeff to perform a ritual with you. 
+    Your spell jar will then be complete.</p>
+`;
+
+document.addEventListener('DOMContentLoaded', () => {
+    const resultsSection = document.getElementById('results-section');
+    const infoDiv = document.createElement('div');
+    infoDiv.innerHTML = infoMessage;
+    resultsSection.insertBefore(infoDiv, resultsSection.querySelector('button'));
+});
+
