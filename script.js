@@ -3,7 +3,19 @@ const apiKey = 'AIzaSyDz9HqsN2K5orRCBSRQL46eU7hMWrXbp9E'; // Your Google API Key
 const unsplashAccessKey = 'q-HPiupPOdFUgZESUDAuDfNAb1IxIyVXdLK1la9FmIM'; // Unsplash API Key
 
 const properties = [
-    'Abundance', 'Adaptability', 'Adoration', 'Amplification of energy', 'Balance', 'Balancing energies', 'Beauty', 'Boosting creativity', 'Boosting the immune system', 'Calming', 'Calmness', 'Clarity', 'Cleansing', 'Communication', 'Community', 'Compassion', 'Confidence', 'Connection to higher realms', 'Courage', 'Creativity', 'Determination', 'Dispelling negative energy', 'Dreaming', 'Emotional Balance', 'Emotional Healing', 'Emotional balance', 'Emotional healing', 'Emotions', 'Empathy', 'Empowerment', 'Encouragement', 'Endurance', 'Energy', 'Energy boosting', 'Energy cleansing', 'Enhancing concentration', 'Enhancing intuition', 'Enhancing psychic abilities', 'Enhancing survival instincts', 'Enhancing willpower', 'Flexibility', 'Focus', 'Grace', 'Grounding', 'Grounding Energy', 'Growth', 'Happiness', 'Harmony', 'Healing', 'Health', 'Heart Chakra', 'Heart Connection', 'Hope', 'Inner Wisdom', 'Introspection', 'Intuition', 'Justice', 'Knowledge', 'Longevity', 'Love', 'Loyalty', 'Luck', 'Manifestation', 'Motivation', 'New beginnings', 'Nurturing', 'Overcoming anger', 'Passion', 'Peace', 'Perseverance', 'Positivity', 'Practicality', 'Promise', 'Prosperity', 'Protection', 'Purification', 'Rebirth', 'Releasing negativity', 'Removing obstacles', 'Renewal', 'Resilience', 'Self-Confidence', 'Self-Esteem', 'Serenity', 'Spiritual Awakening', 'Spiritual Connection', 'Spiritual Fortitude', 'Spiritual Growth', 'Spiritual Insight', 'Spiritual Openness', 'Spiritual awareness', 'Spiritual growth', 'Stability', 'Stabilizing energy', 'Steadfastness', 'Strength', 'Stress relief', 'Success', 'Support', 'Survival', 'Transformation', 'Transition', 'Truth', 'Vitality', 'Wisdom', 'courage', 'creativity', 'divination', 'endurance', 'fertility', 'frugality', 'gaining favors', 'good fortune', 'grounding', 'growth', 'healing', 'health', 'intuition', 'love', 'manifestation', 'peace', 'prosperity', 'protection', 'psychic abilities', 'purification', 'resilience', 'stability', 'strength', 'tranquility', 'transformation'
+    'Amplification of energy', 'Clarity', 'Spiritual growth', 'Energy cleansing',
+    'Emotional healing', 'Boosting creativity', 'Grounding', 'Protection', 'Enhancing survival instincts',
+    'Stability', 'Strength', 'Balance', 'Calming', 'Energy boosting', 'Purification',
+    'Connection to higher realms', 'Balancing energies', 'Prosperity', 'Enhancing willpower',
+    'Serenity', 'Dispelling negative energy', 'Wisdom', 'Intuition', 'Emotional balance', 'Healing',
+    'Enhancing psychic abilities', 'Renewal', 'Rebirth', 'Resilience', 'Encouragement', 'Motivation',
+    'Positivity', 'Overcoming anger', 'Dreaming', 'Love', 'Boosting the immune system', 'Harmony',
+    'Peace', 'Spiritual awareness', 'Stress relief', 'Enhancing concentration', 'Nurturing',
+    'Stabilizing energy', 'Courage', 'Confidence', 'Releasing negativity', 'Growth', 'Abundance',
+    'New beginnings', 'Communication', 'Truth', 'Hope', 'Manifestation', 'Luck', 'Creativity',
+    'Self-Esteem', 'Self-Confidence', 'Compassion', 'Heart Chakra', 'Transformation', 'Transition',
+    'Health', 'Fertility', 'Good fortune', 'Divination', 'Tranquility', 'Removing obstacles',
+    'Frugality', 'Gaining favors', 'Endurance'
 ];
 
 $(document).ready(function() {
@@ -102,6 +114,10 @@ async function findItems() {
     } else {
         itemList.innerHTML = '<p>No components match your selected properties.</p>';
     }
+
+    // Display selected properties above the search bar
+    const selectedPropertiesList = document.getElementById('selected-properties');
+    selectedPropertiesList.innerHTML = selectedProperties.map(prop => `<span class="selected-property">${prop}</span>`).join(', ');
 }
 
 // Modal functionality
@@ -178,51 +194,4 @@ function showSelectedItems() {
             const itemLink = `<a href="https://www.google.com/search?tbm=isch&q=${encodeURIComponent(item.item)}" target="_blank">${item.item}</a>`;
             row.innerHTML = `
                 <td>${itemLink}</td>
-                <td><img src="${item.imageUrl}" alt="${item.item}" onclick="openModal('${item.imageUrl}', '${item.item}')"></td>
-                <td>${item.type}</td>
-                <td>${item.properties.join(', ')}</td>
-            `;
-            body.appendChild(row);
-
-            item.properties.forEach(prop => allProperties.add(prop));
-        });
-
-        table.appendChild(body);
-        selectedTable.appendChild(table);
-    } else {
-               selectedTable.innerHTML = '<p>No components selected.</p>';
-    }
-
-    propertiesList.innerHTML = Array.from(allProperties).sort().join(', ');
-
-    document.getElementById('results-section').style.display = 'block';
-    document.getElementById('spell-form').style.display = 'none';
-    document.getElementById('selection-section').style.display = 'none';
-}
-
-function resetApp() {
-    document.getElementById('spell-form').style.display = 'block';
-    document.getElementById('selection-section').style.display = 'none';
-    document.getElementById('results-section').style.display = 'none';
-    document.getElementById('item-list').innerHTML = '';
-    document.getElementById('selected-items-table').innerHTML = '';
-    document.getElementById('unique-properties').innerHTML = '';
-    $('#properties-select').val(null).trigger('change');
-}
-
-// Information message
-const infoMessage = `
-    <p>All of the crystals on the list are provided and available for selection at the booth. 
-    However, all of the rocks and plants will need to be foraged from around the Starstruck Farms property.</p>
-    <p>Gather the crystals you want, then respectfully scavenge the remaining components from the farm. 
-    Once all of the components are inside the jar, seek out Jeff to perform a ritual with you. 
-    Your spell jar will then be complete.</p>
-`;
-
-document.addEventListener('DOMContentLoaded', () => {
-    const resultsSection = document.getElementById('results-section');
-    const infoDiv = document.createElement('div');
-    infoDiv.innerHTML = infoMessage;
-    resultsSection.insertBefore(infoDiv, resultsSection.querySelector('button'));
-});
-
+                <td><img src="${item.imageUrl}" alt="${item.item}" onclick="openModal('${item.imageUrl
