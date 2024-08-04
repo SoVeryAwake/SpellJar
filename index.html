@@ -19,9 +19,7 @@
         <h1>Build Your Spell Jar</h1>
         <form id="spell-form">
             <label>Select Spiritual Properties:</label><br>
-            <select id="properties-select" multiple="multiple" style="width: 100%;">
-                <!-- Options will be added here by JavaScript -->
-            </select>
+            <select id="properties-select" multiple="multiple" style="width: 100%;"></select>
             <br><br>
             <button type="button" onclick="findItems()">Find Matching Components</button>
         </form>
@@ -36,10 +34,8 @@
         <div id="results-section" style="display: none;">
             <h2>Selected Components</h2>
             <div id="selected-items-table"></div>
-
             <h2>Unique Properties</h2>
             <div id="unique-properties"></div>
-
             <button type="button" onclick="resetApp()">Build a New Jar</button>
         </div>
     </div>
