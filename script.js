@@ -100,6 +100,7 @@ async function findItems() {
     }
 }
 
+
 // Modal functionality
 function openModal(imageUrl, captionText) {
     const modal = document.getElementById('imageModal');
@@ -206,7 +207,7 @@ function resetApp() {
     $('#properties-select').val(null).trigger('change');
 }
 
-// Information message
+// Information Message
 const infoMessage = `
     <p>All of the crystals on the list are provided and available for selection at the booth. 
     However, all of the rocks and plants will need to be foraged from around the Starstruck Farms property.</p>
