@@ -6,17 +6,6 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
     <style>
-        .selected-properties {
-            margin-bottom: 10px;
-        }
-        .selected-property {
-            display: inline-block;
-            background-color: #e1ecf4;
-            color: #39739d;
-            padding: 5px 10px;
-            margin: 2px;
-            border-radius: 3px;
-        }
         .select2-container--default .select2-selection--multiple .select2-selection__choice {
             background-color: #e1ecf4;
             color: #39739d;
@@ -29,7 +18,6 @@
     <div class="container">
         <h1>Build Your Spell Jar</h1>
         <form id="spell-form">
-            <div id="selected-properties" class="selected-properties"></div>
             <label>Select Spiritual Properties:</label><br>
             <select id="properties-select" multiple="multiple" style="width: 100%;">
                 <!-- Options will be added here by JavaScript -->
@@ -65,6 +53,7 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+    <script src="data.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
