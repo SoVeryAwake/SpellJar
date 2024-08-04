@@ -1,6 +1,3 @@
-const sheetId = '1OZC2I95TySyNYARE-AOcLoP4nrvfWqV0KmzRgBApevo'; // Your Google Sheet ID
-console.log(process.env.PING);
-const apiKey = 'My API Key'; // Your restricted Google API Key
 const unsplashAccessKey = 'q-HPiupPOdFUgZESUDAuDfNAb1IxIyVXdLK1la9FmIM'; // Your Unsplash API Key
 
 const properties = [
@@ -47,30 +44,15 @@ async function fetchImage(query) {
     return 'https://via.placeholder.com/50'; // A placeholder image URL if no results are found
 }
 
-async function fetchSheetData() {
-    const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/A1:D1000?key=${apiKey}`);
-    const data = await response.json();
-    console.log('Fetched Data:', data); // Log fetched data for debugging
-    return data.values.slice(1).map(row => ({
-        item: row[0],
-        type: row[1],
-        properties: row[2].split(', ').map(prop => prop.toLowerCase()), // Convert properties to lowercase
-        imageUrl: row[3] || ''
-    }));
-}
-
 async function findItems() {
     const selectedProperties = $('#properties-select').val().map(prop => prop.toLowerCase()); // Convert selected properties to lowercase
     console.log("Selected properties:", selectedProperties);
     const itemList = document.getElementById('item-list');
     itemList.innerHTML = '';
 
-    const items = await fetchSheetData();
-    console.log('Items:', items); // Log processed items for debugging
-
     if (selectedProperties.length > 0) {
         for (const property of selectedProperties) {
-            const matchingItems = items.filter(item => item.properties.includes(property));
+            const matchingItems = data.filter(item => item.properties.includes(property));
             if (matchingItems.length > 0) {
                 const table = document.createElement('table');
                 table.classList.add('property-table');
@@ -94,7 +76,7 @@ async function findItems() {
                         body.appendChild(typeHeader);
 
                         for (const item of items) {
-                            const imageUrl = item.imageUrl || await fetchImage(`${item.item} ${item.type}`);
+                            const imageUrl = item.imageUrl && item.imageUrl !== "nan" ? item.imageUrl : await fetchImage(`${item.item} ${item.type}`);
                             const row = document.createElement('tr');
                             const itemLink = `<a href="https://www.google.com/search?tbm=isch&q=${encodeURIComponent(item.item)}" target="_blank">${item.item}</a>`;
                             row.innerHTML = `
@@ -201,7 +183,7 @@ function showSelectedItems() {
             item.properties.forEach(prop => allProperties.add(prop));
         });
 
-                table.appendChild(body);
+        table.appendChild(body);
         selectedTable.appendChild(table);
     } else {
         selectedTable.innerHTML = '<p>No components selected.</p>';
