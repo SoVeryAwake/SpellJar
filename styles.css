@@ -26,7 +26,7 @@ body {
 
 h1, h2 {
     font-family: 'Fraunces', serif;
-    color: #ff6f61; /* Bright pink */
+    color: #81017b; /* Bright pink */
     text-align: center;
     font-weight: 700;
     font-size: 2em;
@@ -46,7 +46,7 @@ label {
 
 button {
     padding: 12px 25px;
-    background-color: #ff6f61; /* Bright pink */
+    background-color: #81017b; /* Bright pink */
     color: #fff;
     border: none;
     border-radius: 25px;
@@ -57,7 +57,7 @@ button {
 }
 
 button:hover {
-    background-color: #e55a4f;
+    background-color: #b9008a;
 }
 
 /* List Styles */
