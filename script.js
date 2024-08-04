@@ -1,4 +1,5 @@
 const sheetId = '1OZC2I95TySyNYARE-AOcLoP4nrvfWqV0KmzRgBApevo'; // Your Google Sheet ID
+console.log(process.env.PING)
 const apiKey = 'My API Key'; // Your restricted Google API Key
 const unsplashAccessKey = 'q-HPiupPOdFUgZESUDAuDfNAb1IxIyVXdLK1la9FmIM'; // Your Unsplash API Key
 
