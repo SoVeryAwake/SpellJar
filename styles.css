@@ -9,7 +9,7 @@ body {
     margin: 0;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start; /* Align items to the top */
     min-height: 100vh;
     padding: 20px;
 }
@@ -21,11 +21,12 @@ body {
     padding: 20px;
     border-radius: 15px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    margin-top: 20px; /* Add top margin for spacing */
 }
 
 h1, h2 {
     font-family: 'Fraunces', serif;
-    color: #81017b; /* Bright pink */
+    color: #ff6f61; /* Bright pink */
     text-align: center;
     font-weight: 700;
     font-size: 2em;
@@ -45,7 +46,7 @@ label {
 
 button {
     padding: 12px 25px;
-    background-color: #81017b; /* Bright pink */
+    background-color: #ff6f61; /* Bright pink */
     color: #fff;
     border: none;
     border-radius: 25px;
@@ -56,7 +57,7 @@ button {
 }
 
 button:hover {
-    background-color: #b9008a;
+    background-color: #e55a4f;
 }
 
 /* List Styles */
@@ -90,7 +91,7 @@ ul {
 }
 
 .type-header.rock {
-    background-color: #ca0088; /* Rocks */
+    background-color: #81017b; /* Rocks */
     color: white;
 }
 
