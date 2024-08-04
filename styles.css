@@ -1,13 +1,17 @@
+/* Importing Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Poppins:wght@300;400;600&family=Fraunces:wght@400;700&display=swap');
+
 /* General Styles */
 body {
-    font-family: Arial, sans-serif;
-    padding: 20px;
-    background-color: #f0f0f0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #fdf4e3; /* Light beige background */
+    color: #333;
     margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    padding: 20px;
 }
 
 .container {
@@ -15,34 +19,44 @@ body {
     width: 100%;
     background-color: #fff;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
 h1, h2 {
-    color: #333;
+    font-family: 'Fraunces', serif;
+    color: #81017b; /* Bright pink */
     text-align: center;
+    font-weight: 700;
+    font-size: 2em;
 }
 
 /* Form Styles */
 form {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
+}
+
+label {
+    font-size: 1.2em;
+    color: #333;
 }
 
 button {
-    padding: 10px 20px;
-    background-color: #007bff;
+    padding: 12px 25px;
+    background-color: #81017b; /* Bright pink */
     color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: 25px;
     cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
     align-self: center;
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #b9008a;
 }
 
 /* List Styles */
@@ -59,44 +73,50 @@ ul {
 }
 
 .property-header {
-    background-color: #007bff;
-    color: white;
+    background-color: #ffcc33; /* Adjusted yellow */
+    color: #333; /* Dark text for better contrast */
+    font-size: 1.2em;
 }
 
 .type-header {
     text-indent: 20px;
+    font-size: 1.1em;
+    font-weight: 600;
 }
 
 .type-header.crystal {
-    background-color: #9b59b6; /* Agate purple */
+    background-color: #fe6102; /* Crystals */
     color: white;
 }
 
 .type-header.rock {
-    background-color: #95a5a6; /* Granite grey */
+    background-color: #ca0088; /* Rocks */
     color: white;
 }
 
 .type-header.plant {
-    background-color: #2ecc71; /* Forest green */
+    background-color: #e40003; /* Plants */
     color: white;
 }
 
 .property-table th,
 .property-table td {
     border: 1px solid #ddd;
-    padding: 8px;
+    padding: 10px;
     text-align: left;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .property-table img {
     width: 50px;
     height: 50px;
     cursor: pointer;
+    border-radius: 50%;
 }
 
 .highlight {
-    background-color: yellow;
+    background-color: #ffeb3b; /* Yellow highlight */
 }
 
 /* Modal Styles */
@@ -110,8 +130,7 @@ ul {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.9);
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
 .modal-content {
@@ -127,7 +146,7 @@ ul {
 }
 
 @keyframes zoom {
-    from {transform:scale(0)} 
+    from {transform:scale(0)}
     to {transform:scale(1)}
 }
 
